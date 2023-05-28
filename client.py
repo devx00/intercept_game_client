@@ -2,6 +2,7 @@ from enum import IntEnum
 from pwn import remote, log
 from packet import RequestPacket, Op
 
+
 class Input(IntEnum):
     """TODO: Figure out the correct input values for these."""
     UP = 1
@@ -15,6 +16,7 @@ class Input(IntEnum):
     START = 9
     SELECT = 10
 
+
 class Spell(IntEnum):
     """TODO: Figure out the correct input values for these."""
     Fireball = 1
@@ -26,6 +28,7 @@ class Spell(IntEnum):
     IceWave = 7
     FrostAura = 8
     FreezingRain = 9
+
 
 class Client:
     def __init__(self,

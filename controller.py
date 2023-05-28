@@ -90,7 +90,7 @@ class Controller(Cmd):
         """Send a raw command int and opcode int"""
         vals = cmdop.split(" ")
         if len(vals != 2):
-            print(f"Must send only 2 integers as input. The cmd and the opcode.")
+            print("Must send only 2 integers as input.")
             return
 
         cmd, op = vals
