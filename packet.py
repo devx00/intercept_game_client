@@ -43,10 +43,11 @@ class RequestPacket:
         if type(self.data) is bytes:
             enc_data = self.encrypted_data(secret_key)
             data_field = len(enc_data)
-
-        packed_data = pack("<BBH", self.opcode, self.player_id, data_field)
-        packed_data += enc_data
-        packed_data += sign(packed_data, secret_key)
+            packed_data = pack("<BBH", self.opcode, self.player_id, data_field)
+        else:
+            packed_data = pack("<BBHHH", self.opcode, self.player_id, data_field, 3, 0)
+            packed_data += enc_data
+            packed_data += sign(packed_data, secret_key)
 
         return packed_data
 

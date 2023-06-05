@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from enum import IntEnum
 from pwn import remote, log
 from packet import RequestPacket, Op
@@ -5,8 +6,8 @@ from packet import RequestPacket, Op
 
 class Input(IntEnum):
     """TODO: Figure out the correct input values for these."""
-    UP = 1
-    DOWN = 2
+    UP = 0x0a
+    DOWN = 0x09
     LEFT = 3
     RIGHT = 4
     A = 5
@@ -40,6 +41,7 @@ class Client:
         self.player_id = player_id
         self.server = server
         self.port = port
+        self.sock = None
         self._connect(server, port)
 
     def _send(self, packet: RequestPacket):
@@ -75,3 +77,17 @@ class Client:
         log.info(f"Attempting command: {cmd} with operation: {op}")
         packet = RequestPacket(cmd, self.player_id, op)
         self._send(packet)
+
+
+# if __name__ == "__main__":
+#     import time
+#     from base64 import b64decode
+#     from controller import PLAYERID, SECRET
+#     # PLAYERID = 11
+#     # SECRET = b64decode(b"NIUs3BwkJbuleutDs44d051NfN8KVmJgJ5+wxLGUEok=")
+#     client = Client(PLAYERID, SECRET)
+#     for i in range(255):
+#         client.command(i, 0)
+#         time.sleep(0.2)
+
+

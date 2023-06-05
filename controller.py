@@ -3,10 +3,10 @@ from client import Client, Spell, Input
 from base64 import b64decode
 from cmd import Cmd
 
-PLAYERID = 11
-SECRET = b64decode(b"NIUs3BwkJbuleutDs44d051NfN8KVmJgJ5+wxLGUEok=")
-# SERVER = "192.168.1.2"
-SERVER = "127.0.0.1"
+PLAYERID, SECRET = 16, b64decode(b"NIUs3BwkJbuleutDs44d051NfN8KVmJgJ5+wxLGUEok=")
+# PLAYERID, SECRET = 11, b64decode(b"PE0ggwOLv5bBY2cI4fbwPMmpTVDGxHHV5rMKhRvGxLc=")
+SERVER = "192.168.1.2"
+# SERVER = "127.0.0.1"
 PORT = 2004
 
 spellmap = {
@@ -89,7 +89,7 @@ class Controller(Cmd):
     def do_rawcmd(self, cmdop):
         """Send a raw command int and opcode int"""
         vals = cmdop.split(" ")
-        if len(vals != 2):
+        if len(vals) != 2:
             print("Must send only 2 integers as input.")
             return
 
